@@ -1,0 +1,24 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc =new Scanner(System.in);
+        ArrayList<Integer> list=new ArrayList<>();
+        System.out.println("Enter the size of the list");
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+            list.add(sc.nextInt());
+        }
+        int sum=0;
+        for(int i=0;i<list.size();i++){
+            sum+=list.get(i);
+        }
+        try{
+            int avg=sum/list.size();
+            System.out.println("The average of "+list+" is "+avg);
+        }catch (ArithmeticException e){
+            System.out.println("Invalid input");
+            e.printStackTrace();
+
+        }
+    }
+}
