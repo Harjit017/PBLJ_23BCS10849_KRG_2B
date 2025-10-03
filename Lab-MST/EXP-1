@@ -1,0 +1,58 @@
+import java.util.*;
+class EmptyListException extends Exception {
+    public EmptyListException(String message) {
+        super(message);
+    }
+}
+class StudentList {
+    ArrayList<String> list = new ArrayList<>();
+    public void addStudent(String name) {
+        list.add(name);
+    }
+    public void removeStudent(String name) throws EmptyListException {
+        if (list.isEmpty()) {
+            throw new EmptyListException("empty student list!");
+        }
+        if (list.remove(name)) {
+            System.out.println(name + " removed successfully.");
+        } else {
+            System.out.println(name + " not found in the list.");
+        }
+    }
+    public void displayStudents() {
+        if (list.isEmpty()) {
+            System.out.println("No students in the list.");
+        } else {
+            System.out.println("Student List: " + list);
+        }
+    }
+}
+
+class StudentApp {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StudentList studentList = new StudentList();
+
+        System.out.println("Enter number of students to add: ");
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter student name: ");
+            studentList.addStudent(sc.next());
+        }
+
+        studentList.displayStudents();
+
+        System.out.print("Enter the name of student to remove: ");
+        String name = sc.next();
+
+        try {
+            studentList.removeStudent(name);
+        } catch (EmptyListException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        studentList.displayStudents();
+    }
+}
+
